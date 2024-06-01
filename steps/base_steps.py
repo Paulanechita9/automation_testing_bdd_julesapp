@@ -1,0 +1,11 @@
+from behave import *
+
+
+@when('base: I click the "{button}" button')
+def step_impl(context, button):
+    context.base_page.click(button)
+
+
+@then('base: The url is: "{url}"')
+def step_impl(context, url):
+    context.base_page.checkURL(url)
