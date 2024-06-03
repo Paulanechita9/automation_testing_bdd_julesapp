@@ -30,7 +30,6 @@ class SignupPage(Browser):
         self.driver.find_element(*self.INPUTNAME).send_keys(name)
 
     def displayError(self, expectedMsg):
-        sleep(2)
         try:
             actual_message = self.driver.find_element(*self.ERRORMSG).text
         except NoSuchElementException:
@@ -40,10 +39,9 @@ class SignupPage(Browser):
 
     def clearNameInput(self, name):
         self.driver.find_element(*self.INPUTNAME).send_keys(Keys.BACKSPACE*len(name))
-        sleep(2)
+
 
     def errorNotDisplayed(self):
-        sleep(1.5)
         try:
             actual = self.driver.find_element(*self.ERRORMSG).is_displayed()
             expected = False
@@ -54,7 +52,6 @@ class SignupPage(Browser):
         assert actual == expected, f'Error message is displayed, actual: {actual}, expected: {expected}'
 
     def betweenPwdNotification(self):
-        sleep(2)
         expected_msg = 'Between 8 and 72 characters'
         try:
             actual_message = self.driver.find_element(By.XPATH,
@@ -66,7 +63,6 @@ class SignupPage(Browser):
                                                 f'actual: 'f'{actual_message}')
 
     def uppercasePwdNotification(self):
-        sleep(2)
         expected_msg = 'Uppercase characters'
         try:
             actual_message = self.driver.find_element(By.XPATH, '//span[normalize-space()="Uppercase characters"]').text
@@ -76,7 +72,6 @@ class SignupPage(Browser):
         assert expected_msg == actual_message, f'Password notification is displayed, expected: {expected_msg}, actual: {actual_message}'
 
     def lowercasePwdNotification(self):
-        sleep(2)
         expected_msg = 'Lowercase characters'
         try:
             actual_message = self.driver.find_element(By.XPATH, '//span[normalize-space()="Lowercase characters"]').text
@@ -86,7 +81,6 @@ class SignupPage(Browser):
         assert expected_msg == actual_message, f'Password notification is displayed, expected: {expected_msg}, actual: {actual_message}'
 
     def numbersPwdNotification(self):
-        sleep(2)
         expected_msg = 'Numbers'
         try:
             actual_message = self.driver.find_element(By.XPATH, '//span[normalize-space()="Numbers"]').text
@@ -97,7 +91,6 @@ class SignupPage(Browser):
                                                 f' {actual_message}')
 
     def specialPwdNotification(self):
-        sleep(2)
         expected_msg = 'Special characters'
         try:
             actual_message = self.driver.find_element(By.XPATH, '//span[normalize-space()="Special characters"]').text

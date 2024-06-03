@@ -5,8 +5,10 @@ Feature: Check the forgot password functionality
 
   @test30
   Scenario: I click the "Forgot password" button, then I click "Back to login" button
+    Then base: I wait "5" seconds for the page to load
     When forgotpwd: I click the "Forgot password" button
     Then forgotpwd: The url is: "https://jules.app/forgot-password"
+    Then base: I wait "5" seconds for the page to load
     When forgotpwd: I click the "Back to login" button
     Then forgotpwd: The url is: "https://jules.app/sign-in"
 

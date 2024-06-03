@@ -23,21 +23,18 @@ class LoginPage(Browser):
 
     def emptyPassword(self):
         self.driver.find_element(*self.PASSWORD).send_keys('s')
-        sleep(1)
         self.driver.find_element(*self.PASSWORD).send_keys(Keys.BACKSPACE)
-        sleep(2)
+
 
     def emptyUsername(self):
         self.driver.find_element(*self.USERNAME).send_keys('s')
-        sleep(1)
         self.driver.find_element(*self.USERNAME).send_keys(Keys.BACKSPACE)
-        sleep(2)
+
 
     def clickLoginButton(self):
         self.driver.find_element(*self.LOGIN_BTN).click()
 
     def display_error_message_password(self, expected_message):
-        sleep(2)
         try:
             actual_message = self.driver.find_element(*self.ERROR_MESSAGE_PASSWORD).text
         except NoSuchElementException:
@@ -55,13 +52,11 @@ class LoginPage(Browser):
         assert expected_message == actual_message, f'Error message is incorrect, expected {expected_message}, actual {actual_message}'
 
     def loginBtnDisabled(self):
-        sleep(1)
         actual = self.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').is_enabled()
         expected = False
         assert expected == actual, f'Login button is working, expected {expected}, actual {actual}'
 
     def loginBtnEnabled(self):
-        sleep(1)
         actual = self.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').is_enabled()
         expected = True
         assert expected == actual, f'Login button is not working, expected {expected}, actual {actual}'

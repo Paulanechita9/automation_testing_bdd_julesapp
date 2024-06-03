@@ -31,10 +31,8 @@ class ForgotPwdPage(Browser):
 
     def inputEmail(self, email):
         self.driver.find_element(*self.EMAILINPUT).send_keys(email)
-        sleep(2)
 
     def errorMsg(self):
-        sleep(1)
         expected_message = 'Please enter a valid email address!'
         try:
             actual_message = self.driver.find_element(*self.INVALIDEMAILERROR).text
@@ -50,7 +48,6 @@ class ForgotPwdPage(Browser):
 
     def clickSendEmailBtn(self):
         self.driver.find_element(*self.SENDEMAILBTN).click()
-        sleep(1.5)
 
     def emailSentNotificationDisplayed(self):
         actual = self.driver.find_element(*self.EMAILSENTNOTIFICATION).is_displayed()

@@ -10,7 +10,6 @@ class BasePage(Browser):
     LOG_IN_BUTTON = (By.XPATH, '//span[normalize-space()="Log In."]')
 
     def click(self, button):
-        sleep(2)
         if button == "Sign up.":
             self.driver.find_element(*self.SIGN_UP_BUTTON).click()
         elif button == "Log in.":
@@ -26,3 +25,6 @@ class BasePage(Browser):
             actual = self.driver.current_url
             expected = self.SIGN_IN_URL
             assert actual == expected, f'The current URL is wrong, actual: {actual}, expected: {expected}'
+
+    def waiting(self, seconds):
+        sleep(int(seconds))
